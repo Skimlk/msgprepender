@@ -1,0 +1,26 @@
+{
+  "manifest_version": 2,
+  "name": "Discord Message Prepender",
+  "version": "1.0",
+  "description": "Prepends a string to your discord messages.",
+  "permissions": [
+    "tabs",
+    "activeTab",
+    "https://discord.com/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "https://discord.com/*"
+      ],
+      "js": ["contentScript.js"]
+    }
+  ],
+  "browser_action": {
+    "default_title": "Discord Message Prepender"
+  },
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": false
+  }
+}
