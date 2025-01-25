@@ -6,18 +6,18 @@
   "permissions": [
     "tabs",
     "activeTab",
+	"storage",
     "https://discord.com/*"
   ],
   "content_scripts": [
     {
-      "matches": [
-        "https://discord.com/*"
-      ],
+      "matches": ["https://discord.com/*"],
       "js": ["contentScript.js"]
     }
   ],
   "browser_action": {
-    "default_title": "Discord Message Prepender"
+    "default_title": "Discord Message Prepender",
+	"default_popup": "popup.html"
   },
   "background": {
     "scripts": ["background.js"],
