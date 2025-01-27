@@ -13,9 +13,9 @@ async function insertIntoPage(text) {
 	console.log(promises);
 }
 
-browser.runtime.onMessage.addListener(function(message) {
+browser.runtime.onMessage.addListener(async function(message) {
 	if (message.elementClicked) {
-		var prependedString = localStorage.getItem('prepended-string') 
+		var prependedString = Object.values(await browser.storage.local.get('prependedString'))[0];
 		if(prependedString) {
 			insertIntoPage(prependedString);
 			console.log(`'${prependedString}' prepended.`);
