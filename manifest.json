@@ -12,15 +12,19 @@
   "content_scripts": [
     {
       "matches": ["https://discord.com/*"],
-      "js": ["contentScript.js"]
+      "js": ["js/contentScript.js"]
     }
+  ],
+  "web_accessible_resources": [
+     "js/utils.js"
   ],
   "browser_action": {
     "default_title": "Discord Message Prepender",
-	"default_popup": "popup.html"
+	"default_popup": "html/popup.html"
   },
   "background": {
-    "scripts": ["background.js"],
-    "persistent": false
+    "scripts": ["js/background.js"],
+    "persistent": false,
+	"type": "module"
   }
 }

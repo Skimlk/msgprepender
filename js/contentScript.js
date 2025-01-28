@@ -1,4 +1,10 @@
-function newEvent(event) {
+(async () => {
+  const src = chrome.runtime.getURL("./utils.js");
+  const contentMain = await import(src);
+  contentMain.main();
+})();
+
+async function newEvent(event) {
 	if(document.querySelector(".markup_f8f345.editor_a552a6.slateTextArea_e52116.fontSize16Padding_bdf0de").textContent == "\ufeff")
         browser.runtime.sendMessage({ elementClicked: true });
 }

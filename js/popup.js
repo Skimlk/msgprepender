@@ -1,3 +1,4 @@
+import { getActiveTab, extractHost } from "./utils.js";
 const title = document.getElementById('title');
 const prependedString = document.getElementById('prepended-string');
 const querySelector = document.getElementById('query-selector');
@@ -12,14 +13,16 @@ prependedString.oninput = function() {
 }
 
 querySelector.onchange = async function() {
-	activeTab = await browser.tabs.query({
-      active: true,
-      currentWindow: true,
-    });	
-	console.log(activeTab[0].url.split('//')[1].split('/')[0]);
+	const activeTab = await getActiveTab();
+	const host = extractHost(activeTab.url);
+	browser.storage.local.set({[host]: querySelector.value});
+	console.log(host);
 }
 
 async function initalize() { 
+	const activeTab = await getActiveTab();
+	const host = extractHost(activeTab.url);
+	querySelector.value = Object.values(await browser.storage.local.get(host))[0] || '';
 	prependedString.value = Object.values(await browser.storage.local.get('prependedString'))[0] || ''; 
 	updateTitle();
 }
