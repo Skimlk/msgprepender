@@ -3,7 +3,8 @@ import { getHost, fetchStoredString } from "./utils.js";
 async function newEvent(event) {
 	const host = await getHost();
 	const selector = await fetchStoredString(host);
-	if(document.querySelector(selector).textContent == "\ufeff")
+	const selectedContent = document.querySelector(selector).textContent;
+	if(selectedContent == "\ufeff" || selectedContent == "")
         browser.runtime.sendMessage({ elementClicked: true });
 }
 function handleResponse(message, sender) {

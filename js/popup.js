@@ -1,4 +1,4 @@
-import { getHost, fetchStoredString, getActiveTab, extractHost } from "./utils.js";
+import { getHost, fetchStoredString } from "./utils.js";
 const title = document.getElementById('title');
 const prependedString = document.getElementById('prepended-string');
 const querySelector = document.getElementById('query-selector');
