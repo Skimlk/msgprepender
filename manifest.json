@@ -1,25 +1,25 @@
 {
   "manifest_version": 2,
-  "name": "Discord Message Prepender",
+  "name": "Message Prepender",
   "version": "1.0",
-  "description": "Prepends a string to your discord messages.",
+  "description": "Prepends a string to your messages.",
   "permissions": [
     "tabs",
     "activeTab",
 	"storage",
-    "https://discord.com/*"
+    "*://*/*"
   ],
   "content_scripts": [
     {
-      "matches": ["https://discord.com/*"],
+      "matches": ["<all_urls>"],
       "js": ["js/contentScript.js"]
     }
   ],
   "web_accessible_resources": [
-     "js/utils.js"
+     "js/*"
   ],
   "browser_action": {
-    "default_title": "Discord Message Prepender",
+    "default_title": "Message Prepender",
 	"default_popup": "html/popup.html"
   },
   "background": {

@@ -1,3 +1,7 @@
 #title {
 	white-space: preserve;
 }
+.info-display {
+	color: red;
+	font: .75em bold;
+}
