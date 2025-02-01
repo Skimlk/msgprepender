@@ -9,7 +9,7 @@ async function newEvent(event) {
 	if(selectedTag.nodeName === "INPUT") {
 		selectedContent = selectedTag.value;
 	} else {
-		selectedContent = selectedTag.innerText;
+		selectedContent = selectedTag.textContent;
 	}
 
 	if(selectedContent == "\ufeff" || selectedContent == "")
