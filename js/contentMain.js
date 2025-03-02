@@ -1,22 +1,33 @@
-import { getHost, fetchStoredString } from "./utils.js";
+import { getHost, fetchStoredString, hasElement } from "./utils.js";
 
+let functionLock = false;
 async function newEvent(event) {
-	const host = await getHost();
-	const selector = await fetchStoredString(host);
-	const selectedTag = document.querySelector(selector);
-	let selectedContent;
+	if(functionLock) return;
+	functionLock = true;
 
-	if(selectedTag.nodeName === "INPUT") {
-		selectedContent = selectedTag.value;
-	} else {
-		selectedContent = selectedTag.textContent;
+	try {
+		const host = await getHost();
+		const selector = await fetchStoredString(host);
+		const selectedElements = await document.querySelectorAll(selector);
+		if(selectedElements.length > 0 && hasElement(selectedElements, document.activeElement)) {
+			const selectedTag = document.activeElement;
+			let selectedContent;
+
+			if(selectedTag.nodeName === "INPUT") {
+				selectedContent = selectedTag.value;
+			} else {
+				selectedContent = selectedTag.textContent;
+			}
+
+			if(selectedContent == "\ufeff" || selectedContent == "")
+				browser.runtime.sendMessage({ elementClicked: true });
+		}
+	} finally {
+		functionLock = false;
 	}
-
-	if(selectedContent == "\ufeff" || selectedContent == "")
-		browser.runtime.sendMessage({ elementClicked: true });
 }
+
 function handleResponse(message, sender) {
-	document.execCommand("delete", false);
 	document.execCommand("insertText", false, message.text);
 }
 

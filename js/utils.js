@@ -31,4 +31,12 @@ async function fetchStoredString(key) {
 	)[0];
 }
 
-export { getActiveTab, getURL, extractHost, getHost, fetchStoredString };
+function hasElement(elements, element) {
+	for(const item of elements) { 
+		if(item == element) 
+			return true;
+	} 
+	return false;
+}
+
+export { getActiveTab, getURL, extractHost, getHost, fetchStoredString, hasElement };

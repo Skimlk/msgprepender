@@ -1,5 +1,9 @@
 #title {
 	white-space: preserve;
+	text-align: center;
+}
+table {
+	float: right;
 }
 .info-display {
 	color: red;
