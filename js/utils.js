@@ -27,7 +27,7 @@ async function getHost() {
 
 async function fetchStoredString(key) {
 	return Object.values(
-			await browser.storage.local.get(key)
+		await browser.storage.local.get(key)
 	)[0];
 }
 
